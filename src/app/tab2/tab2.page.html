@@ -1,9 +1,30 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>
-      Tab Two
-    </ion-title>
+  <ion-toolbar color="dark">
+    <ion-title>Foro General</ion-title>
   </ion-toolbar>
 </ion-header>
-
-<ion-content></ion-content>
+ 
+<ion-content class="ion-padding">
+  <ion-list>
+    <h2>Ordenar por:</h2>
+      <ion-item (click)="sort()">
+        <p>Más antiguo a más nuevo</p>
+      </ion-item>
+      <ion-item (click)="sortReverse()">
+        <p>Más nuevo a más antiguo</p>
+      </ion-item>
+      <ion-item (click)="sortTitle()">
+        <p>Título</p>
+      </ion-item>
+  </ion-list>
+  <ion-item button *ngFor="let dev of developers" [routerLink]="['/', 'comments', dev.id]">
+    <ion-card>
+        <ion-card-header>
+            <img [src]="dev.img"/>
+            <ion-card-subtitle>{{ dev.fecha }} por {{ dev.email }}</ion-card-subtitle>
+            <ion-card-title>{{ dev.name }}</ion-card-title>
+        </ion-card-header>
+        <ion-card-content></ion-card-content>
+    </ion-card>
+  </ion-item>
+</ion-content>

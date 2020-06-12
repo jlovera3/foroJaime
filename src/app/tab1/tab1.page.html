@@ -1,41 +1,58 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="dark">
     <ion-title>
-      Tab One
+      Mis Posts
     </ion-title>
   </ion-toolbar>
 </ion-header>
-
-<ion-content>
-    <ion-card class="welcome-card">
-      <img src="/assets/shapes.svg" alt="" />
-      <ion-card-header>
-        <ion-card-subtitle>Get Started</ion-card-subtitle>
-        <ion-card-title>Welcome to Ionic</ion-card-title>
-      </ion-card-header>
-      <ion-card-content>
-        <p>Now that your app has been created, you'll want to start building out features and components. Check out some of the resources below for next steps.</p>
-      </ion-card-content>
-    </ion-card>
-    <ion-list lines="none">
-      <ion-list-header>
-        <ion-label>Resources</ion-label>
-      </ion-list-header>
-      <ion-item href="https://ionicframework.com/docs/">
-        <ion-icon slot="start" color="medium" name="book"></ion-icon>
-        <ion-label>Ionic Documentation</ion-label>
+<ion-content class="ion-padding">
+ 
+  <ion-segment [(ngModel)]="selectedView">
+    <ion-segment-button value="new">
+      <ion-label>Nuevo</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="myposts">
+      <ion-label>Publicaciones</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+ 
+  <div [ngSwitch]="selectedView">
+    <div *ngSwitchCase="'new'">
+      <ion-item>
+        <ion-label position="stacked">Introduce un título</ion-label>
+        <ion-input [(ngModel)]="developer.name" placeholder="Título del post"></ion-input>
       </ion-item>
-      <ion-item href="https://ionicframework.com/docs/building/scaffolding">
-        <ion-icon slot="start" color="medium" name="build"></ion-icon>
-        <ion-label>Scaffold Out Your App</ion-label>
+      <ion-item>
+        <ion-label position="stacked">Contenido</ion-label>
+        <ion-input [(ngModel)]="developer.skills" placeholder="¿En qué estas pensando?"></ion-input>
       </ion-item>
-      <ion-item href="https://ionicframework.com/docs/layout/structure">
-        <ion-icon slot="start" color="medium" name="grid"></ion-icon>
-        <ion-label>Change Your App Layout</ion-label>
+      <ion-item>
+        <ion-label position="stacked">Url de imagen</ion-label>
+        <ion-input [(ngModel)]="developer.img" placeholder="https://..."></ion-input>
       </ion-item>
-      <ion-item href="https://ionicframework.com/docs/theming/basics">
-        <ion-icon slot="start" color="medium" name="color-fill"></ion-icon>
-        <ion-label>Theme Your App</ion-label>
+      <ion-item>
+        <ion-label position="stacked">Url de imagen2 (opcional)</ion-label>
+        <ion-input [(ngModel)]="developer.img2" placeholder="https://..."></ion-input>
       </ion-item>
-    </ion-list>
+      <ion-item>
+        <ion-label position="stacked">Url de imagen3 (opcional)</ion-label>
+        <ion-input [(ngModel)]="developer.img3" placeholder="https://..."></ion-input>
+      </ion-item>
+      <ion-button expand="block" (click)="addDeveloper()">Añadir Post!</ion-button>
+    </div>
+ 
+    <div *ngSwitchCase="'myposts'"> 
+      <ion-item button *ngFor="let dev of developers" [routerLink]="['/', 'post', dev.id]">
+        <ion-card>
+            <ion-card-header>
+                <img [src]="dev.img"/>
+                <ion-card-subtitle>{{ dev.fecha }}</ion-card-subtitle>
+                <ion-card-title>{{ dev.name }}</ion-card-title>
+            </ion-card-header>
+            <ion-card-content>{{ dev.skills }}</ion-card-content>
+        </ion-card>
+      </ion-item>
+    </div>
+  </div>
+ 
 </ion-content>

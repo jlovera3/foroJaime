@@ -1,0 +1,55 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="tab2"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Post</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div *ngIf="developer">
+    <ion-item>
+      <ion-card>
+        <ion-card-header>
+          <ion-slides pager="true" [options]="slideOpts">
+            <ion-slide>
+              <img [src]="developer.img" />
+            </ion-slide>
+            <ion-slide>
+              <img [src]="developer.img2" />
+            </ion-slide>
+            <ion-slide>
+              <img [src]="developer.img3" />
+            </ion-slide>
+          </ion-slides>
+          <ion-card-subtitle>{{ developer.fecha }} por {{ developer.email }}</ion-card-subtitle>
+          <ion-card-title>{{ developer.name }}</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>{{ developer.skills }}</ion-card-content>
+      </ion-card>
+    </ion-item>
+  </div>
+
+  <div>
+    <h2>Comentarios</h2>
+    <ion-list>
+      <ion-item button *ngFor="let comm of comentarios" [routerLink]="['/', 'edit', comm.id]">
+        <ion-avatar slot="start">
+          <img [src]="comm.avatar">
+        </ion-avatar>
+        <ion-label>
+          <h3>by {{ comm.email }}</h3>
+          <p>{{ comm.msg }}</p>
+          <img [src]="comm.img" />
+        </ion-label>
+      </ion-item>
+    </ion-list>
+  </div>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button [routerLink]="['/', 'add', devId]">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

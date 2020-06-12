@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="tab1"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Post</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="delete()">
+        <ion-icon name="trash"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div *ngIf="developer">
+    <ion-item>
+      <ion-label position="stacked">Título</ion-label>
+      <ion-input [(ngModel)]="developer.name" placeholder="Developer Name"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Descripción del post</ion-label>
+      <ion-input [(ngModel)]="developer.skills" placeholder="Descripcion"></ion-input>
+    </ion-item>
+      <ion-slides pager="true" [options]="slideOpts">
+        <ion-slide>
+          <img [src]="developer.img" />
+        </ion-slide>
+        <ion-slide>
+          <img [src]="developer.img2" />
+        </ion-slide>
+        <ion-slide>
+          <img [src]="developer.img3" />
+        </ion-slide>
+      </ion-slides>
+      <ion-label position="stacked">URL de tu imagen</ion-label>
+      <ion-input [(ngModel)]="developer.img" placeholder="https://..."></ion-input>
+    <ion-item>
+      <ion-label position="stacked">URL de tu imagen2</ion-label>
+      <ion-input [(ngModel)]="developer.img2" placeholder="https://..."></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">URL de tu imagen3</ion-label>
+      <ion-input [(ngModel)]="developer.img3" placeholder="https://..."></ion-input>
+    </ion-item>
+    <ion-button expand="block" (click)="updateDeveloper()">Actualizar post</ion-button>
+  </div>
+</ion-content>

@@ -1,9 +1,45 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>
-      Tab Three
-    </ion-title>
+  <ion-toolbar color="dark">
+    <ion-title>Perfil de Usuario</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content></ion-content>
+<ion-content>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col size="5">
+        <ion-img class="picture" [src]="picture">
+          <!-- ? picture : 'https://www.simplifai.ai/wp-content/uploads/2019/06/blank-profile-picture-973460_960_720-400x400.png'"-->
+        </ion-img>
+      </ion-col>
+    </ion-row>
+
+    <ion-list>
+      <ion-item>
+        <ion-col size="12">
+          <ion-text>
+            {{ name ? name : 'Nombre de usuario' }}
+          </ion-text>
+        </ion-col>
+        <ion-icon slot="end" name="create" (click)=editName()></ion-icon>
+      </ion-item>
+      <ion-item>
+        <ion-col size="12">
+          <ion-text>
+            {{ email ? email : 'Correo electrónico' }}
+          </ion-text>
+        </ion-col>
+      </ion-item>
+      <ion-item>
+        <ion-col size="12">
+          <ion-text>
+            {{ desc ? desc : 'Descripción' }}
+          </ion-text>
+        </ion-col>
+        <ion-icon slot="end" name="create" (click)=editDesc()></ion-icon>
+      </ion-item>
+    </ion-list>
+  </ion-grid>
+  <ion-button (click)=logout()>Cerrar Sesión</ion-button>
+</ion-content>

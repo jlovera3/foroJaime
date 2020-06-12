@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="tab2"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Añadir comentario</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div>
+    <ion-item>
+      <ion-label position="stacked">Escribe tu comentario</ion-label>
+      <ion-input [(ngModel)]="msg" placeholder="Descripcion"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Añade una imagen (opcional)</ion-label>
+      <ion-input [(ngModel)]="img" placeholder="https://..."></ion-input>
+    </ion-item>
+    <ion-button expand="block" (click)="addComment()">Añadir comentario</ion-button>
+  </div>
+</ion-content>
